@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    background: url(https://3.bp.blogspot.com/-0mmT6NIsZ7Y/Vo9iYNAmm7I/AAAAAAAAOt0/wbZigdYqBSc/s1600/anh-dong-chuc-mung-2016-%25282%2529.gif) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+  }
+img{
+    width: 150px;
+    height: 350px;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}.box{
+    position: relative;
+    width: 200px;
+    height: 350px;
+    transform-style: preserve-3d;
+    animation: animate 20s linear infinite;
+}
+@keyframes animate{
+    0%{
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    100%{
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+.box span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform: rotateY(calc(var(--i) * 60deg)) translateZ(280px);
+    -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,#0004);/*Đổ Bóng*/
+}
+.box span img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.name{
+    color: rgb(196, 134, 125);
+    padding-top: 300px;
+    margin-left: -150px;
+}
+
+#footer {
+    background: burlywood;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+    color: #fff;
+  }
+  
+  #footer a {
+    text-decoration: none;
+    margin-top: 100px;
+    
+  }
+
+  .bkap{
+      padding-right: 20px;
+      border-right: solid 1px #fff;
+  }
+  .tang{
+    padding-left: 20px;
+  }
+  .hihi{
+      padding-left: 10px;
+  }
+  .tym{
+      padding-left: 15px;
+  }
+  .happyNewyear{
+      text-align: center;
+      padding-top: 10px;
+      color: #fff;
+  }
