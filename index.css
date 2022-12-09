@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 html {
-    background: url(https://3.bp.blogspot.com/-0mmT6NIsZ7Y/Vo9iYNAmm7I/AAAAAAAAOt0/wbZigdYqBSc/s1600/anh-dong-chuc-mung-2016-%25282%2529.gif) no-repeat center center fixed;
+    background: url(./image/8.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -12,7 +12,7 @@ html {
     
   }
 img{
-    width: 150px;
+    width: 50px;
     height: 350px;
 }
 .main{
