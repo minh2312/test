@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Bot Status Tracker</title>
+</head>
+<body>
+    <h1>Telegram Bot Status Tracker</h1>
+    <p>Bot sẽ theo dõi trạng thái người dùng online/offline dựa trên sự kiện gửi tin nhắn.</p>
+
+    <script>
+        const botToken = '6473738022:AAEuj4ao5NAXaLuaPtK78ntQ431ixDY2bYs';  // Token của bot Telegram
+        const chatId = '2103433977';  // ID của chat nơi bạn nhận thông báo
+
+        const friendUsernames = ["pknhi0", "yanglake_34"];  // Danh sách tên người dùng bạn muốn theo dõi
+        const userStatus = {};  // Để lưu trạng thái online/offline của người dùng
+
+        // Lấy cập nhật tin nhắn từ bot
+        async function getUpdates() {
+            const url = `https://api.telegram.org/bot${botToken}/getUpdates`;
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.ok && data.result.length > 0) {
+                data.result.forEach(update => {
+                    const message = update.message;
+                    const userId = message.from.id;
+                    const username = message.from.username;
+
+                    // Kiểm tra xem người dùng có trong danh sách bạn muốn theo dõi
+                    if (friendUsernames.includes(username)) {
+                        const currentTime = new Date().toLocaleString();
+
+                        // Giả lập trạng thái online (khi gửi tin nhắn đến bot)
+                        if (userStatus[userId] !== 'online') {
+                            userStatus[userId] = 'online';
+                            sendStatusUpdate(username, 'online', currentTime);
+                        }
+                    }
+                });
+            }
+        }
+
+        // Gửi thông báo về trạng thái online/offline
+        async function sendStatusUpdate(username, status, currentTime) {
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            const message = `${status === 'online' ? '✅' : '❌'} ${username} đã ${status.toUpperCase()} vào lúc ${currentTime}`;
+
+            const data = {
+                chat_id: chatId,
+                text: message
+            };
+
+            await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        }
+
+        // Hàm gọi lại getUpdates mỗi 5 giây
+        setInterval(getUpdates, 5000);  // Lặp lại mỗi 5 giây
+    </script>
+</body>
+</html>
